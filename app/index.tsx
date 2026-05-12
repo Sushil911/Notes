@@ -9,7 +9,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Note, useNotes } from '../context/NotesContext';
 import { useAppTheme } from '../theme/theme';
 
@@ -18,6 +18,7 @@ export default function NotesListScreen() {
   const { notes } = useNotes(); 
   const router = useRouter();
   const [search, setSearch] = useState('');
+  const insets = useSafeAreaInsets();
 
   const styles = useMemo(
     () =>
@@ -168,13 +169,14 @@ export default function NotesListScreen() {
         renderItem={({ item }) => <NoteCard item={item} />}
         numColumns={isTablet ? 2 : 1}
         key={isTablet ? 'tablet' : 'phone'}
+        showsVerticalScrollIndicator={false}
       />
 
       <Pressable
         style={({ pressed }) => [
           {
             position: 'absolute',
-            bottom: theme.spacing.l,
+            bottom: theme.spacing.l + insets.bottom,
             right: theme.spacing.l,
             backgroundColor: theme.colors.accent,
             width: 64,

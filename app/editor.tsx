@@ -158,7 +158,10 @@ export default function NoteEditorScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={90}
     >
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView 
+      contentContainerStyle={{ flexGrow: 1 }}
+      showsVerticalScrollIndicator={false}
+      >
         <ImageBackground
           source={require("../assets/images/neo-background.jpg")}
           style={styles.headerImage}
